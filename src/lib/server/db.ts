@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { MONGODB_URI } from '$app/env/private';
 
 interface MongooseCache {
 	conn: typeof mongoose | null;
@@ -16,7 +17,7 @@ if (!global.mongooseCache) {
 }
 
 export async function connectDB(): Promise<typeof mongoose> {
-	const uri = process.env.MONGODB_URI;
+	const uri = MONGODB_URI || process.env.MONGODB_URI;
 
 	if (!uri) {
 		throw new Error(

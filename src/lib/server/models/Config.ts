@@ -1,4 +1,5 @@
 import mongoose, { Schema, type Document, type Model } from 'mongoose';
+import { ACCESS_PIN } from '$app/env/private';
 
 export interface IConfig extends Document {
 	access_pin: string;
@@ -12,7 +13,7 @@ const ConfigSchema = new Schema<IConfig>(
 	{
 		access_pin: {
 			type: String,
-			default: () => process.env.ACCESS_PIN || '123456',
+			default: () => ACCESS_PIN || process.env.ACCESS_PIN || '123456',
 			required: true,
 			trim: true
 		},
@@ -46,7 +47,7 @@ export async function getOrCreateConfig(): Promise<IConfig> {
 	let config = await ConfigModel.findOne();
 	if (!config) {
 		config = await ConfigModel.create({
-			access_pin: process.env.ACCESS_PIN || '123456',
+			access_pin: ACCESS_PIN || process.env.ACCESS_PIN || '123456',
 			matcher_count: 0,
 			request_count: 0,
 			last_used_at: null,

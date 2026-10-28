@@ -1,3 +1,5 @@
+import { DEEPSEEK_API_KEY } from '$app/env/private';
+
 export interface EvaluationIssue {
 	line?: number | string;
 	type: 'typo' | 'syntax' | 'logic' | 'formatting' | 'other';
@@ -27,7 +29,7 @@ export async function evaluateCodeWithDeepSeek(
 	studentCode: string,
 	language: string
 ): Promise<EvaluationResult> {
-	const apiKey = process.env.DEEPSEEK_API_KEY;
+	const apiKey = DEEPSEEK_API_KEY || process.env.DEEPSEEK_API_KEY;
 
 	if (!apiKey || apiKey === 'sk-your-deepseek-api-key') {
 		throw new Error(
