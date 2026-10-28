@@ -4,13 +4,10 @@
 		Plus,
 		Search,
 		CodeXml,
-		Sparkles,
 		Clock,
 		TriangleAlert,
 		ArrowRight,
-		FileCode,
 		Activity,
-		Trash2,
 		X
 	} from 'lucide-svelte';
 	import { SUPPORTED_LANGUAGES, type LanguageOption } from '#lib/highlight';
@@ -66,7 +63,7 @@
 		const found = SUPPORTED_LANGUAGES.find(
 			(l: LanguageOption) => l.id === codeLang || l.name.toLowerCase() === codeLang
 		);
-		return found ? `${found.icon} ${found.name}` : codeLang.toUpperCase();
+		return found ? found.name : codeLang.toUpperCase();
 	}
 </script>
 
@@ -107,12 +104,6 @@
 
 		<div class="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
 			<div class="max-w-2xl space-y-2">
-				<div
-					class="inline-flex items-center gap-2 rounded-full border border-emerald-200/60 bg-emerald-100/80 px-3 py-1 text-xs font-semibold text-emerald-800"
-				>
-					<Sparkles class="h-3.5 w-3.5 text-emerald-600" />
-					<span>Instant Syntax & Typo Detection</span>
-				</div>
 				<h1 class="text-2xl font-extrabold tracking-tight text-stone-900 sm:text-3xl lg:text-4xl">
 					Find coding mistakes & typos effortlessly.
 				</h1>
@@ -180,7 +171,7 @@
 			>
 				<option value="all">All Languages ({data.codes.length})</option>
 				{#each SUPPORTED_LANGUAGES as lang (lang.id)}
-					<option value={lang.id}>{lang.icon} {lang.name}</option>
+					<option value={lang.id}>{lang.name}</option>
 				{/each}
 			</select>
 		</div>
@@ -197,41 +188,12 @@
 
 	<!-- Code List Section -->
 	{#if filteredCodes.length === 0}
-		<div class="rounded-3xl border-2 border-dashed border-stone-200 bg-white p-12 text-center">
-			<div
-				class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-100 bg-emerald-50 text-emerald-600"
-			>
-				<FileCode class="h-7 w-7" />
-			</div>
-			<h3 class="mb-1 text-base font-semibold text-stone-800">
-				{searchQuery || selectedLanguageFilter !== 'all'
-					? 'No matching codes found'
-					: 'No reference codes yet'}
-			</h3>
-			<p class="mx-auto mb-6 max-w-md text-xs text-stone-500">
-				{searchQuery || selectedLanguageFilter !== 'all'
-					? 'Try searching with another keyword or resetting the language filter.'
-					: 'Add your first reference code to allow students to evaluate their solutions against it.'}
-			</p>
-			{#if searchQuery || selectedLanguageFilter !== 'all'}
-				<button
-					onclick={() => {
-						searchQuery = '';
-						selectedLanguageFilter = 'all';
-					}}
-					class="rounded-lg bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
-				>
-					Clear Filters
-				</button>
-			{:else}
-				<button
-					onclick={() => (isModalOpen = true)}
-					class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-emerald-700"
-				>
-					<Plus class="h-4 w-4" />
-					<span>Add First Reference Code</span>
-				</button>
-			{/if}
+		<div
+			class="rounded-2xl border border-stone-200/80 bg-white py-12 text-center text-sm text-stone-500 shadow-2xs"
+		>
+			{searchQuery || selectedLanguageFilter !== 'all'
+				? 'No matching reference codes found.'
+				: 'No reference code yet.'}
 		</div>
 	{:else}
 		<div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -277,29 +239,8 @@
 
 					<!-- Bottom Action Link -->
 					<div
-						class="flex items-center justify-between border-t border-stone-100 bg-stone-50/70 px-5 py-3.5"
+						class="flex items-center justify-end border-t border-stone-100 bg-stone-50/70 px-5 py-3.5"
 					>
-						<form
-							method="POST"
-							action="?/delete"
-							use:enhance
-							class="inline"
-							onsubmit={(e) => {
-								if (!confirm('Are you sure you want to delete this reference code?')) {
-									e.preventDefault();
-								}
-							}}
-						>
-							<input type="hidden" name="id" value={item.id} />
-							<button
-								type="submit"
-								class="rounded-lg p-1.5 text-stone-400 transition-colors hover:bg-rose-50 hover:text-rose-600"
-								title="Delete reference code"
-							>
-								<Trash2 class="h-3.5 w-3.5" />
-							</button>
-						</form>
-
 						<a
 							href="/code/{item.id}"
 							class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 transition-all group-hover:translate-x-0.5 hover:text-emerald-800"
@@ -392,7 +333,7 @@
 						class="w-full cursor-pointer rounded-xl border border-stone-200 bg-white px-3.5 py-2 text-sm shadow-2xs transition-all focus:border-transparent focus:ring-2 focus:ring-emerald-500 focus:outline-none"
 					>
 						{#each SUPPORTED_LANGUAGES as lang (lang.id)}
-							<option value={lang.id}>{lang.icon} {lang.name} ({lang.id})</option>
+							<option value={lang.id}>{lang.name}</option>
 						{/each}
 					</select>
 				</div>
@@ -401,7 +342,7 @@
 				<div class="space-y-1.5">
 					<div class="flex items-center justify-between">
 						<label for="code" class="block text-xs font-semibold text-stone-700">
-							Reference Code (Right Code) <span class="text-rose-500">*</span>
+							Reference Code <span class="text-rose-500">*</span>
 						</label>
 						<span class="font-mono text-[11px] text-stone-400">Tutor code</span>
 					</div>

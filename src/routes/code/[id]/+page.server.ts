@@ -2,17 +2,13 @@ import { error, isHttpError } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { connectDB } from '#lib/server/db';
 import { CodeModel, type ICode } from '#lib/server/models/Code';
-import { getOrCreateConfig } from '#lib/server/models/Config';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
 
 	try {
 		await connectDB();
-		const [codeDoc, config] = await Promise.all([
-			CodeModel.findById(id).lean<ICode>(),
-			getOrCreateConfig()
-		]);
+		const codeDoc = await CodeModel.findById(id).lean<ICode>();
 
 		if (!codeDoc) {
 			throw error(404, 'Reference code not found or it has expired after 48 hours.');
@@ -29,8 +25,7 @@ export const load: PageServerLoad = async ({ params }) => {
 				code: codeDoc.code,
 				created_at: createdAt.toISOString(),
 				expires_at: expiresAt.toISOString()
-			},
-			defaultPin: config.access_pin || '123456'
+			}
 		};
 	} catch (err: unknown) {
 		if (isHttpError(err)) throw err;

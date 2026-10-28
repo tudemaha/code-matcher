@@ -10,7 +10,6 @@
 		CircleCheck,
 		TriangleAlert,
 		Info,
-		CircleQuestionMark,
 		Terminal,
 		CheckCheck
 	} from 'lucide-svelte';
@@ -21,13 +20,7 @@
 
 	// Student code input
 	let studentCode = $state('');
-	let pin = $state('123456');
-
-	$effect(() => {
-		if (data.defaultPin) {
-			pin = data.defaultPin;
-		}
-	});
+	let pin = $state('');
 
 	// AI evaluation state
 	let isEvaluating = $state(false);
@@ -121,7 +114,7 @@
 		const found = SUPPORTED_LANGUAGES.find(
 			(l: LanguageOption) => l.id === codeLang || l.name.toLowerCase() === codeLang
 		);
-		return found ? `${found.icon} ${found.name}` : codeLang.toUpperCase();
+		return found ? found.name : codeLang.toUpperCase();
 	}
 </script>
 
@@ -171,7 +164,7 @@
 					<div class="flex items-center gap-2">
 						<span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
 						<h2 class="text-xs font-bold tracking-wider text-stone-700 uppercase">
-							1. Right Code (Reference - Disabled)
+							1. Reference Code
 						</h2>
 					</div>
 					<div class="flex items-center gap-2">
@@ -274,11 +267,10 @@
 					<input
 						type="password"
 						bind:value={pin}
-						placeholder="123456"
+						placeholder="Enter PIN"
 						maxlength="16"
 						class="w-28 rounded-lg border border-stone-200 bg-stone-50 px-2.5 py-1.5 font-mono text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
 					/>
-					<span class="hidden text-[11px] text-stone-400 sm:inline">(Default: 123456)</span>
 				</div>
 
 				<!-- Start Evaluation Button -->
@@ -467,21 +459,6 @@
 						</div>
 					</div>
 				{/if}
-			</div>
-
-			<!-- Helpful Tutor Tip Box -->
-			<div
-				class="space-y-1.5 rounded-2xl border border-stone-200 bg-stone-50/70 p-4 text-xs text-stone-600"
-			>
-				<div class="flex items-center gap-1.5 font-bold text-stone-800">
-					<CircleQuestionMark class="h-3.5 w-3.5 text-emerald-600" />
-					<span>Tutor Note</span>
-				</div>
-				<p class="text-[11px] leading-relaxed text-stone-500">
-					The evaluator compares both codes token-by-token. If the student has typos in variable
-					names, syntax mistakes, or string literal mismatches, they will be highlighted with the
-					suggested fix.
-				</p>
 			</div>
 		</div>
 	</div>

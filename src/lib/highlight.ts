@@ -67,21 +67,20 @@ export function escapeHtml(str: string): string {
 export interface LanguageOption {
 	id: string;
 	name: string;
-	icon: string;
 }
 
 export const SUPPORTED_LANGUAGES: LanguageOption[] = [
-	{ id: 'py', name: 'Python', icon: '🐍' },
-	{ id: 'js', name: 'JavaScript', icon: '🟨' },
-	{ id: 'ts', name: 'TypeScript', icon: '🔷' },
-	{ id: 'html', name: 'HTML', icon: '🌐' },
-	{ id: 'css', name: 'CSS', icon: '🎨' },
-	{ id: 'java', name: 'Java', icon: '☕' },
-	{ id: 'cpp', name: 'C++', icon: '⚡' },
-	{ id: 'c', name: 'C', icon: '🔧' },
-	{ id: 'sql', name: 'SQL', icon: '🗄️' },
-	{ id: 'json', name: 'JSON', icon: '📋' },
-	{ id: 'bash', name: 'Bash', icon: '💻' },
-	{ id: 'rust', name: 'Rust', icon: '🦀' },
-	{ id: 'go', name: 'Go', icon: '🐹' }
+	{ id: 'py', name: 'Python' },
+	{ id: 'js', name: 'JavaScript' },
+	{ id: 'ts', name: 'TypeScript' },
+	{ id: 'html', name: 'HTML' },
+	{ id: 'css', name: 'CSS' },
+	{ id: 'java', name: 'Java' },
+	{ id: 'cpp', name: 'C++' },
+	{ id: 'c', name: 'C' },
+	{ id: 'sql', name: 'SQL' },
+	{ id: 'json', name: 'JSON' },
+	{ id: 'bash', name: 'Bash' },
+	{ id: 'rust', name: 'Rust' },
+	{ id: 'go', name: 'Go' }
 ];
