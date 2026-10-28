@@ -213,7 +213,7 @@
 					<div class="flex items-center gap-2">
 						<span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span>
 						<h2 class="text-xs font-bold tracking-wider text-stone-700 uppercase">
-							2. Student Code to Check
+							2. Code to Check
 						</h2>
 					</div>
 					<div class="flex items-center gap-2">
