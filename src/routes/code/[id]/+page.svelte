@@ -353,7 +353,7 @@
 						<div class="space-y-1.5 rounded-xl border border-stone-200 bg-stone-50 p-4">
 							<div class="flex items-center gap-1.5 text-xs font-bold text-stone-800">
 								<Info class="h-3.5 w-3.5 text-emerald-600" />
-								<span>Tutor Summary:</span>
+								<span>Code Summary:</span>
 							</div>
 							<p class="text-xs leading-relaxed text-stone-600">
 								{evaluationResult.summary}

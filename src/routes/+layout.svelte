@@ -18,9 +18,7 @@
 			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8"
 		>
 			<div class="flex items-center gap-2">
-				<span>Code Checker by <strong class="font-semibold text-stone-700">Tude Maha</strong></span>
-				<span>•</span>
-				<span>Designed for coding tutors & students</span>
+				<span>Code Matcher by <strong class="font-semibold text-stone-700">Tude Maha</strong></span>
 			</div>
 			<div class="text-stone-400">
 				<span>Reference & Student Code Evaluator</span>

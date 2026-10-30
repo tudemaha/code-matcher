@@ -1,6 +1,6 @@
-# Code Checker by Tude Maha
+# Code Matcher by Tude Maha
 
-This project is a code checker website. It checks two codes: the reference (right) code and the student code to be evaluated. This is useful for coding students when tutor (me) finds difficulties to find syntax and string typos. AI evaluates both codes to pinpoint the wrong parts and suggest fixes.
+This project is a code matcher website. It checks two codes: the reference (right) code and the student code to be evaluated. This is useful for coding students when tutor (me) finds difficulties to find syntax and string typos. AI evaluates both codes to pinpoint the wrong parts and suggest fixes.
 
 ## Project Layout
 

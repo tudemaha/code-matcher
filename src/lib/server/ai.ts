@@ -44,7 +44,7 @@ export async function evaluateCodeWithDeepSeek(
 	if (refTrimmed === studTrimmed) {
 		return {
 			isExactMatch: true,
-			summary: '🎉 Perfect match! The student code is completely identical to the reference code.',
+			summary: 'Perfect match! The student code is completely identical to the reference code.',
 			issues: []
 		};
 	}

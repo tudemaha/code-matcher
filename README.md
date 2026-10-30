@@ -1,6 +1,6 @@
 # Code Matcher
 
-> **Code Checker by Tude Maha**  
+> **Code Matcher by Tude Maha**  
 > A clean, distraction-free code comparison and evaluation web tool designed for coding tutors and students.
 
 Code Matcher simplifies reviewing student code by comparing it side-by-side against a reference solution. Powered by DeepSeek AI, it pinpoints syntax errors, string typos, missing punctuation, and logic discrepancies with actionable line-by-line fix suggestions.
